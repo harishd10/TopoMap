@@ -1,14 +1,19 @@
 #ifndef TOPOMAP_HPP
 #define TOPOMAP_HPP
 
+#include <string>
+
 #include "DisjointSets.hpp"
 #include "geomutils.h"
 
-
+#ifdef WIN32
 #ifdef TOPOMAP_LIB
 #define TOPOMAP_API __declspec(dllexport)
 #else
 #define TOPOMAP_API __declspec(dllimport)
+#endif
+#else
+#define TOPOMAP_API
 #endif
 
 class TOPOMAP_API TopoMap

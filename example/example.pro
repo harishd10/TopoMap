@@ -11,6 +11,7 @@ SOURCES += \
 unix:!macx{
     INCLUDEPATH += -I /usr/local/include/
     LIBS += -L../cpp -lTopoMap
+    LIBS += -L/usr/local/lib/
 
     QMAKE_CXXFLAGS += -fopenmp
     QMAKE_LFLAGS   += -fopenmp
@@ -24,11 +25,9 @@ win32-msvc*{
     #http://stackoverflow.com/questions/5134245/how-to-set-different-qmake-configuration-depending-on-debug-release
     CONFIG(debug, debug|release) {
         WINDOWS_BIN_PATH = debug/
-#        LIBS += "-L$$(VCPKG_HOME)/installed/x64-windows/$${WINDOWS_BIN_PATH}/lib" -llapack -lopenblas -larmadillo -lmlpack
         LIBS += "-L../cpp/debug/" -lTopoMap
     } else {
         WINDOWS_BIN_PATH = ./
-#        LIBS += "-L$$(VCPKG_HOME)/installed/x64-windows/$${WINDOWS_BIN_PATH}/lib" -llapack -lopenblas -larmadillo -lmlpack
         LIBS += "-L../cpp/release/" -lTopoMap
     }
 
