@@ -32,11 +32,11 @@ void TopoMap::emst(std::vector<double> &data, int dim, std::vector<std::pair<int
     }
 
     std::vector<size_t> oldFromNew;
-    mlpack::tree::KDTree<mlpack::metric::EuclideanDistance, mlpack::emst::DTBStat, arma::mat> tree(pts, oldFromNew, leafSize);
-    mlpack::metric::LMetric<2, true> metric;
+    mlpack::KDTree<mlpack::EuclideanDistance, mlpack::DTBStat, arma::mat> tree(pts, oldFromNew, leafSize);
+    mlpack::LMetric<2, true> metric;
 
     arma::mat results;
-    mlpack::emst::DualTreeBoruvka<> dtb(&tree, metric);
+    mlpack::DualTreeBoruvka<> dtb(&tree, metric);
     dtb.ComputeMST(results);
 
     // Unmap the results.
